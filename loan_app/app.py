@@ -1,8 +1,8 @@
 from datetime import datetime
 from flask import Flask, request, render_template, redirect, url_for
 
-from models import get_session, Payment
-from utils import calculate_balances
+from .models import get_session, Payment
+from .utils import calculate_balances
 
 app = Flask(__name__)
 
