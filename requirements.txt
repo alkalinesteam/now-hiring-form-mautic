@@ -1,2 +1,6 @@
 Flask
 SQLAlchemy
+APScheduler
+fpdf2
+requests
+gunicorn
