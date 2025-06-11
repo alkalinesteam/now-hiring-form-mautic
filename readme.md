@@ -10,6 +10,6 @@ This simple Flask application tracks loan payments and generates monthly PDF sta
    ```
 2. Run the application:
    ```bash
-   python loan_app/app.py
+   python -m loan_app.app
    ```
 3. To enable the scheduler, import and call `scheduler.start()` from `loan_app/scheduler.py` with valid Gmail credentials.

@@ -1,9 +1,9 @@
 from datetime import date
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from models import get_session, Payment
-from utils import generate_pdf, BORROWER_EMAIL, LENDER_EMAIL
-from utils import BORROWER_NAME, PROPERTY_ADDRESS
+from .models import get_session, Payment
+from .utils import generate_pdf, BORROWER_EMAIL, LENDER_EMAIL
+from .utils import BORROWER_NAME, PROPERTY_ADDRESS
 import smtplib
 from email.message import EmailMessage
 
