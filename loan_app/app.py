@@ -1,18 +1,10 @@
 from datetime import datetime
-from flask import Flask, request, render_template_string, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for
 
 from models import get_session, Payment
 from utils import calculate_balances
 
 app = Flask(__name__)
-
-form_html = """
-<form method='post'>
-  Amount: <input type='number' name='amount' step='0.01' required><br>
-  Date: <input type='date' name='date' required><br>
-  <input type='submit'>
-</form>
-"""
 
 @app.route('/add-payment', methods=['GET', 'POST'])
 def add_payment():
@@ -30,8 +22,7 @@ def add_payment():
         for p in session.query(Payment).order_by(Payment.date).all()
     ]
     balances = calculate_balances(payments)
-    html = form_html + f"<p>Principal: ${balances['principal']:.2f}<br>Interest: ${balances['interest']:.2f}<br>Total: ${balances['total']:.2f}</p>"
-    return render_template_string(html)
+    return render_template('add_payment.html', balances=balances)
 
 if __name__ == '__main__':
     app.run(debug=True)

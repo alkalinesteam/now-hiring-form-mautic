@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+  <title>Add Payment</title>
+</head>
+<body>
+  <form method="post">
+    Amount: <input type="number" name="amount" step="0.01" required><br>
+    Date: <input type="date" name="date" required><br>
+    <input type="submit">
+  </form>
+  <p>Principal: ${{ '%.2f'|format(balances.principal) }}<br>
+     Interest: ${{ '%.2f'|format(balances.interest) }}<br>
+     Total: ${{ '%.2f'|format(balances.total) }}</p>
+</body>
+</html>
