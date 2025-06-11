@@ -7,22 +7,8 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email import encoders
-from sqlalchemy.orm import Session
 from .models import get_session, Payment
-
-try:
-    from flask import Flask, render_template, request, redirect, url_for
-except Exception:
-    # Flask might not be available in the execution environment
-    Flask = None
-    def render_template(*a, **kw):
-        return "Flask not available"
-    def request():
-        pass
-    def redirect(url):
-        return url
-    def url_for(name):
-        return name
+from flask import Flask, render_template, request, redirect, url_for
 
 PRINCIPAL = 120000.0
 START_DATE = date(2019, 10, 1)
@@ -34,7 +20,7 @@ PROPERTY_ADDRESS = "761 W Pratt St, Baltimore, MD"
 BORROWER_EMAIL = "micki+hassan@thegreengroupllc.com"
 LENDER_EMAIL = "micki@gmail.com"
 
-app = Flask(__name__) if Flask else None
+app = Flask(__name__)
 
 def init_db():
     # Ensure the database and tables exist
@@ -218,8 +204,9 @@ def start_scheduler():
     t.start()
 
 
-if __name__ == '__main__':
+if app:
     init_db()
-    if app:
-        start_scheduler()
-        app.run(debug=True)
+    start_scheduler()
+
+if __name__ == '__main__':
+    app.run(debug=True)
